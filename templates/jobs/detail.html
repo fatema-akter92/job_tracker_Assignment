@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}{{ job.company_name }} - Job Tracker{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start">
+            <h2 class="fw-bold">{{ job.position }}</h2>
+            <span class="badge fs-6
+                {% if job.status == 'Applied' %}bg-primary
+                {% elif job.status == 'Interview' %}bg-warning text-dark
+                {% elif job.status == 'Offer' %}bg-info text-dark
+                {% elif job.status == 'Accepted' %}bg-success
+                {% else %}bg-danger{% endif %}">
+                {{ job.status }}
+            </span>
+        </div>
+        <h5 class="text-muted mb-4">{{ job.company_name }}</h5>
+
+        <table class="table table-borderless">
+            <tr><th style="width:200px;">Location</th><td>{{ job.job_location }}</td></tr>
+            <tr><th>Salary</th><td>{% if job.salary %}{{ job.salary }}{% else %}Not specified{% endif %}</td></tr>
+            <tr><th>Application Date</th><td>{{ job.application_date }}</td></tr>
+            <tr><th>Deadline</th><td>{{ job.deadline }}</td></tr>
+            <tr><th>Notes</th><td>{{ job.notes|default:"—" }}</td></tr>
+            <tr><th>Created At</th><td>{{ job.created_at }}</td></tr>
+            <tr><th>Updated At</th><td>{{ job.updated_at }}</td></tr>
+        </table>
+
+        <a href="{% url 'job_update' job.pk %}" class="btn btn-primary">Edit</a>
+        <a href="{% url 'job_delete' job.pk %}" class="btn btn-outline-danger">Delete</a>
+        <a href="{% url 'job_list' %}" class="btn btn-outline-secondary">Back to List</a>
+    </div>
+</div>
+{% endblock %}

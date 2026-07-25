@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}All Applications - Job Tracker{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="fw-bold">All Job Applications</h2>
+    <a href="{% url 'job_create' %}" class="btn btn-primary">+ Add Application</a>
+</div>
+
+{% if jobs %}
+<div class="table-responsive shadow-sm">
+    <table class="table table-hover align-middle bg-white">
+        <thead class="table-dark">
+            <tr>
+                <th>Company</th>
+                <th>Position</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Application Date</th>
+                <th>Deadline</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for job in jobs %}
+            <tr>
+                <td>{{ job.company_name }}</td>
+                <td>{{ job.position }}</td>
+                <td>{{ job.job_location }}</td>
+                <td>
+                    <span class="badge
+                        {% if job.status == 'Applied' %}bg-primary
+                        {% elif job.status == 'Interview' %}bg-warning text-dark
+                        {% elif job.status == 'Offer' %}bg-info text-dark
+                        {% elif job.status == 'Accepted' %}bg-success
+                        {% else %}bg-danger{% endif %}">
+                        {{ job.status }}
+                    </span>
+                </td>
+                <td>{{ job.application_date }}</td>
+                <td>{{ job.deadline }}</td>
+                <td>
+                    <a href="{% url 'job_detail' job.pk %}" class="btn btn-sm btn-outline-secondary">View</a>
+                    <a href="{% url 'job_update' job.pk %}" class="btn btn-sm btn-outline-primary">Edit</a>
+                    <a href="{% url 'job_delete' job.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="alert alert-info">No job applications yet. <a href="{% url 'job_create' %}">Add your first one</a>.</div>
+{% endif %}
+{% endblock %}

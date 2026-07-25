@@ -1,0 +1,15 @@
+body {
+    background-color: #f7f8fc;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.navbar-brand {
+    font-size: 1.4rem;
+}
+
+table th {
+    font-weight: 600;
+}

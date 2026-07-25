@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Home - Job Application Tracker{% endblock %}
+
+{% block content %}
+<div class="p-4 mb-4 rounded-3" style="background-color:#eef2ff;">
+    <h1 class="fw-bold">Job Application Tracker</h1>
+    <p class="text-muted mb-0">Keep track of every job application in one place.</p>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-4 col-lg-2">
+        <div class="card text-center shadow-sm border-0" style="background-color:#1f2a44; color:#fff;">
+            <div class="card-body">
+                <h6 class="card-title">Total</h6>
+                <p class="display-6 fw-bold mb-0">{{ total }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-lg-2">
+        <div class="card text-center shadow-sm border-0" style="background-color:#0d6efd; color:#fff;">
+            <div class="card-body">
+                <h6 class="card-title">Applied</h6>
+                <p class="display-6 fw-bold mb-0">{{ status_counts.Applied }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-lg-2">
+        <div class="card text-center shadow-sm border-0" style="background-color:#fd7e14; color:#fff;">
+            <div class="card-body">
+                <h6 class="card-title">Interview</h6>
+                <p class="display-6 fw-bold mb-0">{{ status_counts.Interview }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-lg-2">
+        <div class="card text-center shadow-sm border-0" style="background-color:#6f42c1; color:#fff;">
+            <div class="card-body">
+                <h6 class="card-title">Offer</h6>
+                <p class="display-6 fw-bold mb-0">{{ status_counts.Offer }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-lg-2">
+        <div class="card text-center shadow-sm border-0" style="background-color:#198754; color:#fff;">
+            <div class="card-body">
+                <h6 class="card-title">Accepted</h6>
+                <p class="display-6 fw-bold mb-0">{{ status_counts.Accepted }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-lg-2">
+        <div class="card text-center shadow-sm border-0" style="background-color:#dc3545; color:#fff;">
+            <div class="card-body">
+                <h6 class="card-title">Rejected</h6>
+                <p class="display-6 fw-bold mb-0">{{ status_counts.Rejected }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex gap-2">
+    <a href="{% url 'job_list' %}" class="btn btn-primary">View All Applications</a>
+    <a href="{% url 'job_create' %}" class="btn btn-outline-primary">Add New Application</a>
+</div>
+{% endblock %}
