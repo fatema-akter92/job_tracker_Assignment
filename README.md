@@ -32,6 +32,5 @@ python manage.py createsuperuser   # optional, for /admin/
 python manage.py runserver
 ```
 
-Visit http://127.0.0.1:8000/
 
 
